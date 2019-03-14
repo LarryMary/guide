@@ -8,3 +8,58 @@ This is a stub. <a href='https://github.com/freecodecamp/guides/tree/master/src/
 <a href='https://github.com/freecodecamp/guides/blob/master/README.md' target='_blank' rel='nofollow'>This quick style guide will help ensure your pull request gets accepted</a>.
 
 <!-- The article goes here, in GitHub-flavored Markdown. Feel free to add YouTube videos, images, and CodePen/JSBin embeds  -->
+
+Suggested Solution
+<section id="solution">
+  
+```javascript
+class DisplayMessages extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      input: '',
+      messages: []
+    }
+    this.handleChange = this.handleChange.bind(this);
+    this.submitMessage = this.submitMessage.bind(this);
+  }
+  
+  // add handleChange() and submitMessage() methods here
+  
+  handleChange(event) {
+    this.setState({
+      input: event.target.value
+    })
+  }
+  
+  submitMessage(event) {
+    let newMessageArray = [...this.state.messages]
+    newMessageArray.push(this.state.input);
+    this.setState({
+      input: '',
+      messages: newMessageArray
+    })
+  }
+
+  render() {
+    let list = this.state.messages.map(
+      (item, index) => 
+        <li key={index}>{item}</li>
+    );
+    return (
+      <div>
+        <h2>Type in a new Message:</h2>
+        { /* render an input, button, and ul here */ }
+        <input  type='text' 
+                value={this.state.input} 
+                onChange={this.handleChange}></input>
+        <button onClick={this.submitMessage} >Add message</button>
+        <ul>{list}</ul>
+        { /* change code above this line */ }
+      </div>
+    );
+  }
+};
+
+```
+</section>
